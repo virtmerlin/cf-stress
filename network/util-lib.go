@@ -31,15 +31,16 @@ func fn_random(min, max int) int {
 	return rand.Intn(max-min) + min
 }
 
-func fn_delete_file(file string) {
-	var cmd_file_name bytes.Buffer
-	cmd_file_name.WriteString("*")
-	cmd_file_name.WriteString(file[:len(file)-1])
-	cmd_file_name.WriteString("*")
-	cmd := exec.Command("rm", cmd_file_name.String())
+func fn_delete_file(filepath string) {
+
+	cmd := exec.Command("/bin/rm", filepath)
+	var out bytes.Buffer
+	var stderr bytes.Buffer
+	cmd.Stdout = &out
+	cmd.Stderr = &stderr
 	err := cmd.Run()
 	if err != nil {
-		log.Println("rm %v", cmd.Args[1])
+		log.Println("rm ", cmd.Args[1])
 		log.Println(fmt.Sprint(err) + ": " + stderr.String())
 		log.Fatal(err)
 	}
