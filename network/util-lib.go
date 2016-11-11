@@ -10,7 +10,7 @@ import (
 )
 
 func fn_gen_uuid() (uuid string) {
-	f_uuid, err := exec.Command("bash", "-c", "for i in {1..1};do uuidgen; done").Output()
+	f_uuid, err := exec.Command("bash", "-c", "r=( $(openssl rand 100000 | sha1sum) ); printf \"%s${r[0]:0:13}\n\"").Output()
 	if err != nil {
 		log.Fatalln(err)
 	}

@@ -42,7 +42,7 @@ func main() {
 
 	for y := 0; y < loop_full; y++ {
 		// Sleep to randomize Writes
-		s_seconds := fn_random(15, 120)
+		s_seconds := fn_random(15, 30)
 		log.Println("Sleeping for ", strconv.Itoa(s_seconds), " Seconds ...")
 		time.Sleep(time.Second * time.Duration(s_seconds))
 

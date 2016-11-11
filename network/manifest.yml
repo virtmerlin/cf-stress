@@ -1,0 +1,18 @@
+applications:
+- name: cf-stress-network
+  memory: 256M
+  instances: 10
+  no-route: true
+  no-hostname: true
+  health-check-type: none
+  buildpack: https://github.com/cloudfoundry/binary-buildpack.git
+  command: "/app/network"
+  disk_quota: 2048M
+env:
+  FILESIZEMIN: 25
+  FILESIZEMAX: 50
+  S3KEY: [UR KEY HERE]
+  S3SECRET: [UR KEY HERE]
+  S3BUCKET: [UR BUCKET HERE]
+  LOOPCOUNT: 9000
+  LOOPCOUNTGETS: 1
